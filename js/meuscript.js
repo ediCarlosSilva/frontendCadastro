@@ -16,16 +16,33 @@ $(document).ready(function() {
 
     function editar() {
         // alert("vamos editar");
-        var par = $(this).parent().parent();
-        var tdMatricula = par.children("td:nth-child(4)");
+        // var par = $(this).parent().parent();
+        // var tdMatricula = par.children("td:nth-child(4)");
 
-        console.log(tdMatricula.text());
-        $("#matricula").text($(tdMatricula).text());
-
+        // console.log(tdMatricula.text());
+        // $("#matricula").text($(tdMatricula).text());
 
         // for (var i = 0; i < colunas.length; i++) {
         //     console.log(colunas.length);
         // }
+
+        var $_GET = {};
+        if (document.location.toString().indexOf('?') !== -1) {
+            var query = document.location
+                .toString()
+                // get the query string
+                .replace(/^.*?\?/, '')
+                // and remove any existing hash string (thanks, @vrijdenker)
+                .replace(/#.*$/, '')
+                .split('&');
+
+            for (var i = 0, l = query.length; i < l; i++) {
+                var aux = decodeURIComponent(query[i]).split('=');
+                $_GET[aux[0]] = aux[1];
+            }
+        }
+        //get the 'index' query parameter
+        alert($_GET['index']);
     }
 
     $.ajax({
@@ -46,7 +63,7 @@ $(document).ready(function() {
                         .append($("<tr/>")
                             .append('<td><input type="checkbox" name="todos" value="todos" id="todos"></td>')
                             .append('<td><a href="#">Consultar</a></td>')
-                            .append('<td><a href="editar.html" class="btnEditar">Editar</a></td>')
+                            .append('<td><a href="editar.html?id=' + data.ListarAlunosResult.Alunos[i].Matricula + '" class = btnEditar ">Editar</a></td>')
                             .append("<td name='matricula'>" + data.ListarAlunosResult.Alunos[i].Matricula + "</td>")
                             .append("<td name='nome'>" + data.ListarAlunosResult.Alunos[i].Nome + "</td>")
                             .append("<td name='p1'>" + data.ListarAlunosResult.Alunos[i].P1 + "</td>")
