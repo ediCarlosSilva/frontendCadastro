@@ -63,7 +63,7 @@ $(document).ready(function() {
             // contentType: "application/json",
             data: {
                 // id: id
-                "Aluno": [{ "Matricula": 4, "Nome": "edi carlos", "P1": 3.00, "P2": 9.00 }]
+                "Aluno": { "Matricula": 4, "Nome": "edi carlos", "P1": 3.00, "P2": 9.00 }
             },
             dataType: "json",
             success: function(data) {
