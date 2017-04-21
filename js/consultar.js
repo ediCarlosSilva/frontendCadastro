@@ -1,7 +1,6 @@
 $(document).ready(function() {
     // alert(document.location.toString().indexOf('?'));
 
-
     var $_GET = {};
     if (document.location.toString().indexOf('?') !== -1) {
         var query = document.location
@@ -52,27 +51,5 @@ $(document).ready(function() {
 
         }
     });
-
-    $("#confirmarEdicao").click(function() {
-
-        alert("estou no evento click");
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:36759/Aluno.svc/EditarAluno",
-            // cache: false,
-            // contentType: "application/json",
-            data: {
-                // id: id
-                "Alunos": [{ "Matricula": 4, "Nome": "edi carlos", "P1": 3.00, "P2": 9.00 }]
-            },
-            dataType: "json",
-            success: function(data) {
-                alert("ajax deu certo");
-                console.log(data);
-
-            }
-        });
-    });
-
 
 });
